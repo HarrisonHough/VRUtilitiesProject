@@ -205,11 +205,11 @@ RectTransform:
   m_Children:
   - {fileID: 2118009114}
   m_Father: {fileID: 1513810816}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 73.5}
+  m_AnchoredPosition: {x: -295, y: 106.5}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &312165726
@@ -252,7 +252,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeInCallback
+        m_MethodName: FadeToClearCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -327,11 +327,11 @@ RectTransform:
   m_Children:
   - {fileID: 620608631}
   m_Father: {fileID: 1513810816}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 42.1}
+  m_AnchoredPosition: {x: -295, y: 77.2}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375009637
@@ -374,7 +374,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeOutCallback
+        m_MethodName: FadeToBlackCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -486,7 +486,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Out In Callback
+  m_Text: 'Fade>Black>
+
+    Clear>Callback'
 --- !u!222 &436106595
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -523,11 +525,11 @@ RectTransform:
   m_Children:
   - {fileID: 1540113782}
   m_Father: {fileID: 1513810816}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 105.47}
+  m_AnchoredPosition: {x: -295, y: 46.8}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475702856
@@ -570,7 +572,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeOutAndIn
+        m_MethodName: FadeToBlackToClear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -649,8 +651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 11}
-  m_SizeDelta: {x: 150, y: 30}
+  m_AnchoredPosition: {x: -295, y: 1}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559207582
 MonoBehaviour:
@@ -692,7 +694,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeOutAndInCallback
+        m_MethodName: FadeToBlackToClearCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -804,7 +806,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fade Out Callback
+  m_Text: Fade>Black>Callback
 --- !u!222 &620608633
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1048,7 +1050,7 @@ GameObject:
   - component: {fileID: 1150785346}
   - component: {fileID: 1150785345}
   m_Layer: 5
-  m_Name: Fade Out Button
+  m_Name: Fade To Black Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,7 +1115,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeOut
+        m_MethodName: FadeToBlack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1293,7 +1295,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fade In
+  m_Text: Fade To Clear
 --- !u!222 &1375337639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1355,9 +1357,9 @@ RectTransform:
   m_Children:
   - {fileID: 1636809719}
   - {fileID: 1150785344}
-  - {fileID: 475702855}
   - {fileID: 312165725}
   - {fileID: 375009636}
+  - {fileID: 475702855}
   - {fileID: 559207581}
   m_Father: {fileID: 1605351249}
   m_RootOrder: 1
@@ -1434,7 +1436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fade Out & In
+  m_Text: Fade>black>clear
 --- !u!222 &1540113784
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1472,7 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d9cf6b92eb64b44a4e9ab2834f55a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInOnStart: 0
+  fadeToClearOnStart: 1
   fadeCanvas: {fileID: 1887578975}
   defaultFadeTime: 3
 --- !u!114 &1605351246
@@ -1577,7 +1579,7 @@ GameObject:
   - component: {fileID: 1636809721}
   - component: {fileID: 1636809720}
   m_Layer: 5
-  m_Name: Fade In Button
+  m_Name: Fade To Clear Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1642,7 +1644,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1605351250}
-        m_MethodName: FadeIn
+        m_MethodName: FadeToClear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1900,7 +1902,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fade Out
+  m_Text: Fade To Black
 --- !u!222 &2006553341
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1974,7 +1976,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fade In Callback
+  m_Text: Fade>Clear>Callback
 --- !u!222 &2118009116
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -28,15 +28,15 @@ public class VRFade : MonoBehaviour
 
     #region Class Variables
     [SerializeField]
-    private bool fadeInOnStart = true;
+    private bool fadeToClearOnStart = true;
     [SerializeField]
     public CanvasGroup fadeCanvas;
     [SerializeField]
     private float defaultFadeTime = 3f;
     private bool inTransition = false;
     public bool InTransition { get { return inTransition; } }
-    private bool fadeIn = false;
-    private bool fadeOut = false;
+    private bool fadeToClear = false;
+    private bool fadeToBlack = false;
     #endregion
 
     /// <summary>
@@ -45,9 +45,9 @@ public class VRFade : MonoBehaviour
     void Start()
     {
         //if checked fade in on start, useful for starting a level
-        if (fadeInOnStart)
+        if (fadeToClearOnStart)
         {
-            FadeIn(null);
+            FadeToClear(null);
         }
     }
 
@@ -55,7 +55,7 @@ public class VRFade : MonoBehaviour
     public bool FadingStatus()
     {
         //return false only if fade
-        if (!fadeIn && !fadeOut)
+        if (!fadeToClear && !fadeToBlack)
             return false;
         else
             return true;
@@ -65,71 +65,71 @@ public class VRFade : MonoBehaviour
     /// Triggers fade in coroutine and allows for function callback on completion
     /// Fade in is the transition from black to clear
     /// </summary>
-    /// <param name="fadedInCallback"></param>
-    public void FadeIn(Action fadedInCallback = null)
+    /// <param name="fadeToClearCallback"></param>
+    public void FadeToClear(Action fadeToClearCallback = null)
     {
         //if already fading in dont fade again
-        if (fadeIn) return;
-        fadeIn = true;
-        StartCoroutine(FadeInCoroutine(fadedInCallback));
+        if (fadeToClear) return;
+        fadeToClear = true;
+        StartCoroutine(FadeToClearCoroutine(fadeToClearCallback));
     }
 
     /// <summary>
     /// Triggers fade out coroutine and allows for function callback on completion
     /// Fade out is the transition from clear to black
     /// </summary>
-    /// <param name="fadedOutCallback"></param>
-    public void FadeOut(Action fadedOutCallback = null)
+    /// <param name="fadeToBlackCallback"></param>
+    public void FadeToBlack(Action fadeToBlackCallback = null)
     {
         //if already fading out dont fade again
-        if (fadeOut) return;
-        fadeOut = true;
-        StartCoroutine(FadeOutCoroutine(fadedOutCallback));
+        if (fadeToBlack) return;
+        fadeToBlack = true;
+        StartCoroutine(FadeToBlackCoroutine(fadeToBlackCallback));
     }
 
     /// <summary>
     /// Overload function allows for control over fade time with additional parameter
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="fadedInCallback"></param>
-    public void FadeIn(float duration, Action fadedInCallback = null)
+    /// <param name="fadeToClearCallback"></param>
+    public void FadeToClear(float duration, Action fadeToClearCallback = null)
     {
         //if already fading in dont fade again
-        if (fadeIn) return;
+        if (fadeToClear) return;
 
-        fadeIn = true;
-        StartCoroutine(FadeInCoroutine(duration, fadedInCallback));
+        fadeToClear = true;
+        StartCoroutine(FadeToClearCoroutine(duration, fadeToClearCallback));
     }
 
     /// <summary>
     /// Overload function allows for control over fade time with the additional parameter
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="fadedOutCallback"></param>
-    public void FadeOut(float duration, Action fadedOutCallback = null)
+    /// <param name="fadeToBlackCallback"></param>
+    public void FadeToBlack(float duration, Action fadeToBlackCallback = null)
     {
         //if already fading out dont fade again
-        if (fadeOut) return;
+        if (fadeToBlack) return;
 
-        fadeOut = true;
-        StartCoroutine(FadeOutCoroutine(duration, fadedOutCallback));
+        fadeToBlack = true;
+        StartCoroutine(FadeToBlackCoroutine(duration, fadeToBlackCallback));
     }
 
     /// <summary>
     /// Triggers the fade in and fade out transition with parameters allowing for
     /// functions to be called after each transition
     /// </summary>
-    /// <param name="fadedOutCallback"></param>
-    /// <param name="fadedInCallback"></param>
-    public void FadeOutAndIn(Action fadedOutCallback = null, Action fadedInCallback = null)
+    /// <param name="fadeToBlackCallback"></param>
+    /// <param name="fadeToClearCallback"></param>
+    public void FadeToBlackToClear(Action fadeToBlackCallback = null, Action fadeToClearCallback = null)
     {
-        FadeOut(() =>
+        FadeToBlack(() =>
         {
-            if (fadedOutCallback != null)
+            if (fadeToBlackCallback != null)
             {
-                fadedOutCallback();
+                fadeToBlackCallback();
             }
-            FadeIn(fadedInCallback);
+            FadeToClear(fadeToClearCallback);
         });
     }
 
@@ -137,26 +137,26 @@ public class VRFade : MonoBehaviour
     /// Triggers the fade in and fade out transition with parameters allowing for
     /// functions to be called after each transition
     /// </summary>
-    /// <param name="fadedOutCallback"></param>
-    /// <param name="fadedInCallback"></param>
-    public void FadeOutAndIn(float duration, Action fadedOutCallback = null, Action fadedInCallback = null)
+    /// <param name="fadeToBlackCallback"></param>
+    /// <param name="fadeToClearCallback"></param>
+    public void FadeToBlackToClear(float duration, Action fadeToBlackCallback = null, Action fadeToClearCallback = null)
     {
-        FadeOut(duration / 2, () =>
+        FadeToBlack(duration / 2, () =>
         {
-            if (fadedOutCallback != null)
+            if (fadeToBlackCallback != null)
             {
-                fadedOutCallback();
+                fadeToBlackCallback();
             }
-            FadeIn(duration / 2, fadedInCallback);
+            FadeToClear(duration / 2, fadeToClearCallback);
         });
     }
 
     /// <summary>
     /// Coroutine for fade in transition
     /// </summary>
-    /// <param name="fadedInCallback"></param>
+    /// <param name="fadeToClearCallback"></param>
     /// <returns></returns>
-    IEnumerator FadeInCoroutine(Action fadedInCallback = null)
+    IEnumerator FadeToClearCoroutine(Action fadeToClearCallback = null)
     {
         float currentTime = 0;
         inTransition = true;
@@ -170,11 +170,11 @@ public class VRFade : MonoBehaviour
         inTransition = false;
     
 
-        //fade in finished
-        fadeIn = false;
-        if (fadedInCallback != null)
+        //fade to clear finished
+        fadeToClear = false;
+        if (fadeToClearCallback != null)
         {
-            fadedInCallback();
+            fadeToClearCallback();
         }
     }
 
@@ -182,9 +182,9 @@ public class VRFade : MonoBehaviour
     /// Coroutine for fade in with extra parameter controlling fade duration
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="fadedInCallback"></param>
+    /// <param name="fadeToClearCallback"></param>
     /// <returns></returns>
-    IEnumerator FadeInCoroutine(float duration, Action fadedInCallback = null)
+    IEnumerator FadeToClearCoroutine(float duration, Action fadeToClearCallback = null)
     {
         float currentTime = 0;
         inTransition = true;
@@ -197,20 +197,20 @@ public class VRFade : MonoBehaviour
         } while (fadeCanvas.alpha != 0);
         inTransition = false;
 
-        //fade in finished
-        fadeIn = false;
-        if (fadedInCallback != null)
+        //fade to clear finished
+        fadeToClear = false;
+        if (fadeToClearCallback != null)
         {
-            fadedInCallback();
+            fadeToClearCallback();
         }
     }
 
     /// <summary>
     /// Coroutine for fade out transition
     /// </summary>
-    /// <param name="fadedOutCallback"></param>
+    /// <param name="fadeToBlackCallback"></param>
     /// <returns></returns>
-    IEnumerator FadeOutCoroutine(Action fadedOutCallback = null)
+    IEnumerator FadeToBlackCoroutine(Action fadeToBlackCallback = null)
     {
         float currentTime = 0;
         inTransition = true;
@@ -223,11 +223,11 @@ public class VRFade : MonoBehaviour
         } while (fadeCanvas.alpha != 1);
         inTransition = false;
 
-        //fadeOut finished
-        fadeOut = false;
-        if (fadedOutCallback != null)
+        //fade to black finished
+        fadeToBlack = false;
+        if (fadeToBlackCallback != null)
         {
-            fadedOutCallback();
+            fadeToBlackCallback();
         }
     }
 
@@ -235,9 +235,9 @@ public class VRFade : MonoBehaviour
     /// Coroutine for fade out with extra parameter controlling fade duration
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="fadedOutCallback"></param>
+    /// <param name="fadeToBlackCallback"></param>
     /// <returns></returns>
-    IEnumerator FadeOutCoroutine(float duration, Action fadedOutCallback = null)
+    IEnumerator FadeToBlackCoroutine(float duration, Action fadeToBlackCallback = null)
     {
        
         float currentTime = 0;
@@ -252,11 +252,11 @@ public class VRFade : MonoBehaviour
 
         inTransition = false;
 
-        //fadeOut finished
-        fadeOut = false;
-        if (fadedOutCallback != null)
+        //fade to black finished
+        fadeToBlack = false;
+        if (fadeToBlackCallback != null)
         {
-            fadedOutCallback();
+            fadeToBlackCallback();
         }
     }
 

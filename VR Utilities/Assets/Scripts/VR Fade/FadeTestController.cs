@@ -15,54 +15,69 @@ public class FadeTestController : MonoBehaviour {
             Debug.Log("Need to assign Debug Text on" + gameObject.name);
     }
 
-    public void FadeIn()
+    public void FadeToClear()
     {
-        debugText.text = "Fading In";
-        VRFade.Instance.FadeIn();
+        debugText.text = "Fading from black to clear";
+        VRFade.Instance.FadeToClear();
     }
 
-    public void FadeOut()
+    public void FadeToBlack()
     {
-        debugText.text = "Fading Out";
-        VRFade.Instance.FadeOut();
+        debugText.text = "Fading clear to black";
+        VRFade.Instance.FadeToBlack();
     }
 
-    public void FadeOutAndIn()
+    public void FadeToBlackToClear()
     {
-        debugText.text = "Fading Out Then In";
-        VRFade.Instance.FadeOutAndIn();
+        debugText.text = "Fading clear to black to clear";
+        VRFade.Instance.FadeToBlackToClear();
     }
-    public void FadeInCallback()
+    public void FadeToClearCallback()
     {
-        debugText.text = "Fading In";
-        VRFade.Instance.FadeIn(FadeInFinished);
+        debugText.text = "Fading from black to clear";
+        VRFade.Instance.FadeToClear(FadeToClearFinishedCallback);
 ;    }
 
-    public void FadeOutCallback()
+    public void FadeToBlackCallback()
     {
-        debugText.text = "Fading Out";
-        VRFade.Instance.FadeOut(FadeOutFinished);
+        debugText.text = "Fading from clear to black";
+        VRFade.Instance.FadeToBlack(FadeToBlackFinishedCallback);
     }
 
-    public void FadeOutAndInCallback()
+    public void FadeToBlackToClearCallback()
     {
-        debugText.text = "Fading In Then Out";
-        VRFade.Instance.FadeOutAndIn(null, FadeOutAndInFinished);
+        debugText.text = "Fading clear to black to clear then callback";
+        VRFade.Instance.FadeToBlackToClear(null, FadeToBlackToClearFinishedCallback);
     }
 
-    private void FadeOutFinished()
+    private void FadeToBlackFinished()
     {
-        debugText.text = "Fade out finished";
+        debugText.text = "Fade clear to black finished";
     }
 
-    private void FadeInFinished()
+    private void FadeToBlackFinishedCallback()
     {
-        debugText.text = "Fade in finished";
+        debugText.text = "CALLBACK - Fade clear to black finished";
     }
 
-    private void FadeOutAndInFinished()
+    private void FadeToClearFinished()
     {
-        debugText.text = "Fade and out in finished";
+        debugText.text = "Fade black to clear finished";
+    }
+
+    private void FadeToClearFinishedCallback()
+    {
+        debugText.text = "CALLBACK - Fade black to clear finished";
+    }
+
+    private void FadeToBlackToClearFinished()
+    {
+        debugText.text = "Fade clear to black to clear finished";
+    }
+
+    private void FadeToBlackToClearFinishedCallback()
+    {
+        debugText.text = "CALLBACK - Fade clear to black to clear finished";
     }
 
 
