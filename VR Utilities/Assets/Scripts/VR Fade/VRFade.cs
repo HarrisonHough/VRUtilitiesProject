@@ -3,6 +3,13 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
+/*
+* AUTHOR: Harrison Hough   
+* COPYRIGHT: Harrison Hough 2018
+* VERSION: 1.0
+* SCRIPT: VR Fade Class
+*/
+
 /// <summary>
 /// VRFade class controls the fading in and out 
 /// (From clear to black and vice versa).
